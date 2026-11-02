@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carbon Footprint Calculator</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container-fluid calculator-container">
+    <h1 class="text-center mb-3">Carbon Footprint Calculator</h1>
+
+    <!-- Static UI preview; section tabs and form buttons have no JavaScript behavior. -->
+    <nav class="calculator-tabs d-flex flex-wrap align-items-center" id="step-tabs" aria-label="Calculator sections">
+      <button type="button" class="step-tab active" data-step="0" aria-current="step">General</button>
+      <button type="button" class="step-tab" data-step="1">Home</button>
+      <button type="button" class="step-tab" data-step="2">Travel</button>
+      <button type="button" class="step-tab" data-step="3">Food</button>
+      <button type="button" class="step-tab" data-step="4">Electronic usage</button>
+      <button type="button" class="step-tab" data-step="5">Shopping</button>
+      <button type="button" class="step-tab" data-step="6">Result</button>
+      <a class="btn btn-success btn-sm home-tab-button" href="index.html">Home</a>
+    </nav>
+
+    <!-- Bootstrap card, like the reference picture. -->
+    <div class="card calculator-card">
+      <div class="card-header"><h2 id="card-heading">Fill the form below</h2></div>
+      <div class="card-body">
+        <form id="carbon-form" novalidate>
+          <section class="step-panel" data-panel="0">
+            <div class="row align-items-center field-row">
+              <div class="col-sm-5"><label for="person-name">Name</label></div>
+              <div class="col-sm-7"><input class="form-control" type="text" id="person-name" maxlength="80" required></div>
+            </div>
+            <div class="row align-items-center field-row">
+              <div class="col-sm-5"><label for="person-age">Age</label></div>
+              <div class="col-sm-7"><input class="form-control" type="number" id="person-age" min="1" max="110" required></div>
+            </div>
+            <div class="row align-items-center field-row">
+              <div class="col-sm-5"><label for="country">Country</label></div>
+              <div class="col-sm-7"><select class="form-select" id="country"><option value="sa">Saudi Arabia</option><option value="eg">Egypt</option><option value="ae">United Arab Emirates</option><option value="other">Other</option></select></div>
+            </div>
+          </section>
+
+          <section class="step-panel" data-panel="1" hidden>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="household-size">People at home</label></div><div class="col-sm-7"><input class="form-control" type="number" id="household-size" min="1" max="30" value="4" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="home-electricity">Other electricity (kWh/month)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="home-electricity" min="0" max="20000" step="any" value="300" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="home-gas">Cooking gas (kg/month)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="home-gas" min="0" max="1000" step="any" value="12" required></div></div>
+            <small class="form-note">Exclude the devices listed later under Electronic usage from the electricity amount.</small>
+          </section>
+
+          <section class="step-panel" data-panel="2" hidden>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="car-type">Car type</label></div><div class="col-sm-7"><select class="form-select" id="car-type"><option value="petrol">Petrol</option><option value="diesel">Diesel</option><option value="hybrid">Hybrid</option><option value="electric">Electric</option><option value="none">No car</option></select></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="car-km">Car travel (km/week)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="car-km" min="0" max="10000" step="any" value="80" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="public-km">Bus travel (km/week)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="public-km" min="0" max="10000" step="any" value="20" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="flight-hours">Flying (hours/year)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="flight-hours" min="0" max="1000" step="any" value="4" required></div></div>
+          </section>
+
+          <section class="step-panel" data-panel="3" hidden>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="diet">Your diet</label></div><div class="col-sm-7"><select class="form-select" id="diet"><option value="meat-heavy">Mostly meat</option><option value="balanced" selected>Mixed diet</option><option value="vegetarian">Vegetarian</option><option value="vegan">Vegan</option></select></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="food-waste">Food waste (kg/week)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="food-waste" min="0" max="100" step="any" value="1" required></div></div>
+          </section>
+
+          <section class="step-panel" data-panel="4" hidden>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="laptop-hours">Laptop (hours/day)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="laptop-hours" min="0" max="24" step="any" value="3" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="desktop-hours">Computer (hours/day)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="desktop-hours" min="0" max="24" step="any" value="1" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="tv-hours">TV (hours/day)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="tv-hours" min="0" max="24" step="any" value="2" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="gaming-hours">Gaming (hours/day)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="gaming-hours" min="0" max="24" step="any" value="0" required></div></div>
+          </section>
+
+          <section class="step-panel" data-panel="5" hidden>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="clothes">Clothes bought (per month)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="clothes" min="0" max="100" step="1" value="2" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="new-electronics">New devices (per year)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="new-electronics" min="0" max="100" step="1" value="1" required></div></div>
+            <div class="row align-items-center field-row"><div class="col-sm-5"><label for="deliveries">Deliveries (per month)</label></div><div class="col-sm-7"><input class="form-control" type="number" id="deliveries" min="0" max="1000" step="1" value="3" required></div></div>
+          </section>
+        </form>
+
+        <section class="step-panel" data-panel="6" hidden>
+          <h3 id="result-greeting" class="result-title">Your carbon footprint</h3>
+          <p class="text-center">Estimated annual carbon footprint:</p>
+          <p class="text-center result-total"><strong id="annual-tonnes">—</strong> tonnes CO₂e</p>
+          <p class="text-center">About <strong id="daily-kg">—</strong> kg CO₂e each day</p>
+          <h4 class="mt-4">Results by category</h4>
+          <table class="table table-sm table-bordered"><thead><tr><th>Category</th><th>kg CO₂e / year</th></tr></thead><tbody id="results-table"></tbody></table>
+          <p class="form-note">These are approximate values for a school project, not official emissions measurements.</p>
+          <button type="button" id="reset-btn" class="btn btn-outline-success btn-sm">Start again</button>
+        </section>
+      </div>
+
+      <div class="card-footer text-center">
+        <button id="prev-btn" type="button" class="btn btn-success btn-sm">Prev</button>
+        <button id="next-btn" type="button" class="btn btn-success btn-sm">Next</button>
+        <div id="form-error" class="form-error" role="alert" aria-live="polite"></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

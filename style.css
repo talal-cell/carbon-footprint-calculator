@@ -1,0 +1,94 @@
+/* Simple school-project styling. Bootstrap handles the grid and form controls. */
+body {
+  background: #fff;
+  color: #222;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+}
+
+h1 { font-weight: 700; font-size: 32px; }
+h2 { font-size: 24px; }
+h4 { font-size: 21px; }
+
+.home-container { max-width: 1080px; padding: 55px 24px; }
+.home-container p { font-family: Arial, sans-serif; line-height: 1.7; }
+.environmental-image { max-width: 330px; max-height: 265px; }
+.assessment-section { max-width: 720px; margin: 32px auto 0; }
+.assessment-section p { margin: 12px 0 18px; }
+
+.calculator-container { max-width: 1020px; padding: 54px 22px 50px; }
+.calculator-tabs {
+  border: 1px solid #a8c0c5;
+  background: #f3f7f7;
+  min-height: 42px;
+  padding: 4px 7px;
+  gap: 4px 16px;
+}
+.step-tab {
+  border: 0;
+  padding: 4px 1px;
+  color: #5a6068;
+  background: transparent;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 15px;
+}
+.step-tab.active { color: #252525; }
+.step-tab:focus-visible { outline: 2px solid #0d6efd; outline-offset: 2px; }
+.home-tab-button { margin-left: auto; font-family: inherit; }
+
+.calculator-card {
+  max-width: 505px;
+  margin: 32px auto 0;
+  border: 1px solid #afc7cd;
+  border-radius: 0;
+  padding: 8px;
+  background: #fff;
+}
+.calculator-card .card-header {
+  border: 0;
+  background: #08733f;
+  color: white;
+  border-radius: 0;
+  text-align: center;
+  padding: 8px 12px;
+}
+.calculator-card .card-header h2 { margin: 0; font-size: 17px; font-weight: 600; }
+.calculator-card .card-body { padding: 14px 12px; }
+.calculator-card .card-footer {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-radius: 0;
+  padding: 12px;
+}
+.field-row { margin: 0 0 11px; }
+.field-row:last-of-type { margin-bottom: 0; }
+.field-row label { font-weight: 600; display: block; margin-bottom: 4px; }
+.field-row .form-control, .field-row .form-select {
+  border-radius: 4px;
+  min-height: 35px;
+  padding: 5px 10px;
+  font-family: inherit;
+  font-size: 15px;
+}
+.step-panel[hidden] { display: none !important; }
+.form-note { color: #666; font-size: 12px; display: block; margin-top: 10px; }
+.form-error { color: #b02a37; font: 13px Arial, sans-serif; margin-top: 8px; }
+.form-error:empty { display: none; }
+.result-title { font-size: 20px; text-align: center; margin-bottom: 12px; }
+.result-total { color: #08733f; font-size: 19px; }
+.result-total strong { font-size: 26px; }
+.table { font-size: 14px; }
+.btn-success { background: #08733f; border-color: #08733f; }
+.btn-success:hover { background: #075a32; border-color: #075a32; }
+
+@media (max-width: 575px) {
+  .calculator-container { padding: 24px 12px; }
+  h1 { font-size: 26px; }
+  .calculator-tabs { gap: 4px 11px; }
+  .step-tab { font-size: 13px; }
+  .calculator-card { margin-top: 20px; }
+  .field-row { margin-bottom: 13px; }
+  .field-row .form-control, .field-row .form-select { width: 100%; }
+  .home-container { padding: 30px 18px; }
+}
